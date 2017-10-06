@@ -41,13 +41,19 @@ contract Listing {
     UpdateListings(msg.sender);
   }
 
-  function fart(bytes32 ipfsHash) public {
+  function anotherchange(bytes32 ipfsHash) public {
     listings.push(listingStruct(msg.sender, ipfsHash));
     UpdateListings(msg.sender);
   }
 
   function testFunction(bytes32 ipfsHash) public returns (bytes32){
-    return ipfsHash;
+    return bytes32(ipfsHash);
+  }
+
+  bytes32 public Date;
+
+  function test(bytes32 _date){
+      Date=_date;
   }
 
 }

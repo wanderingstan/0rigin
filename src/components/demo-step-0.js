@@ -13,6 +13,14 @@ class DemoStep0 extends Component {
       }).catch((error) => {
           alert('Error:  ' + error)
       });
+
+      // contractService.submitListing().then((count) => {
+      //   alert(count)
+      // }).catch((error) => {
+      //     alert('Error:  ' + error)
+      // });
+
+
     }, 2000);
 
   }

@@ -42,11 +42,16 @@ class ContractService {
   }
 
   submitListing(ipfsListing) {
+    console.log('submitListing')
     return new Promise((resolve, reject) => {
       this.listingContract.setProvider(web3Service.web3.currentProvider)
       web3Service.web3.eth.getAccounts((error, accounts) => {
         this.listingContract.deployed().then((instance) => {
-          return instance.create(this.getBytes32FromIpfsHash(ipfsListing), {from: accounts[0]})
+          const byte1 = web3Service.web3.fromAscii("20160528")
+          debugger;
+          console.log(byte1)
+          console.log(typeof(byte1))
+          return instance.test(byte1, {from: accounts[0]})
         }).then((result) => {
           resolve(result)
         }).catch((error) => {
@@ -61,15 +66,44 @@ class ContractService {
       this.listingContract.setProvider(web3Service.web3.currentProvider)
         this.listingContract.deployed().then((instance) => {
 
-          instance.testFunction("0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF").then((listingsAddresesLength) => {
-            alert(listingsAddresesLength)
+          // //sets bytes32
+          // instance.test.sendTransaction(web3Service.web3.fromAscii("20160528"));
+
+          console.log("Hey");
+          console.log(instance);
+
+          // //gets bytes32
+          // instance.Date.call(function(err, val) {
+          //     if  (err) console.log(err);
+          //     console.log("toAscii")
+          //     console.log(web3Service.web3.toAscii(val));
+          //     // will print "20160528"
+          //  });
+
+          // instance.test("0xFF", {from: accounts[0]}).then(() => {
+          //   alert("Value set")
+          // });
+
+
+/*
+          instance.Date().then((val) => {
+            alert(web3Service.web3.toAscii(val))
+          });
+*/
+
+          instance.testFunction.call(web3Service.web3.fromAscii("20160528")).then((val) => {
+            alert(web3Service.web3.toAscii(val))
           });
 
 
-          console.log("About to get listings length")
-          instance.listingsAddresesLength.call().then((listingsAddresesLength) => {
-            alert(listingsAddresesLength)
-          });
+          // instance.testFunction(web3Service.web3.fromAscii("20160528")).then((val) => {
+          //   alert(web3Service.web3.toAscii(val))
+          // });
+
+          // console.log("About to get listings length")
+          // instance.listingsAddresesLength.call().then((listingsAddresesLength) => {
+          //   alert(listingsAddresesLength)
+          // });
 
         })
     })
