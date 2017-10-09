@@ -70,7 +70,8 @@ class DemoStep0 extends Component {
             <img
               src='ajax-loader.gif'
               style={{
-                display: ((this.state.listingsResults.length == 0 && this.state.listingsResults.contractListingsCount != 0) ||
+                display: ((this.state.listingsResults.length == 0 &&
+                  this.state.listingsResults.contractListingsCount != 0) ||
                   this.state.listingsResults.contractListingsCount < 0) ?
                 'block' : 'none'
               }}
@@ -95,6 +96,12 @@ class DemoStep0 extends Component {
                 Contract Price:{listing.contract.price}<br/>
                 Units Available:{listing.contract.unitsAvailable}<br/>
                 IPFS Hash:{listing.contract.ipfsHash}<br/>
+                  <button className="btn btn-info" onClick={() => {
+                    this.props.onBuyListing(listing)
+                  }}>
+                    Buy It
+                  </button>
+
               </div>
             ))}
           </div>

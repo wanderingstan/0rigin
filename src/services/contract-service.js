@@ -113,6 +113,27 @@ class ContractService {
     })
   }
 
+  buyListing(listingIndex, unitsToBuy) {
+    return new Promise((resolve, reject) => {
+
+      this.listingContract.setProvider(web3Service.web3.currentProvider)
+      web3Service.web3.eth.getAccounts((error, accounts) => {
+        this.listingContract.deployed().then((instance) => {
+          // Buy it
+          instance.buyListing(listingIndex, unitsToBuy, {from: accounts[0]}).then(() => {
+            console.log("Purchased!")
+            resolve()
+          })
+          .catch((error) => {
+            console.error(error)
+            reject(error)
+          })
+        })
+      })
+    })
+  }
+
+
 }
 
 const contractService = new ContractService()
