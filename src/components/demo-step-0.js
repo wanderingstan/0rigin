@@ -50,7 +50,7 @@ class DemoStep0 extends Component {
       }).catch((error) => {
         alert('Error:  ' + error)
       });
-    }, 2000);
+    }, 3000);
   }
 
   render() {
@@ -67,16 +67,29 @@ class DemoStep0 extends Component {
         </div>
 
          <div>
-            <img
-              src='ajax-loader.gif'
+
+            <div
               style={{
-                display: ((this.state.listingsResults.length == 0 &&
-                  this.state.listingsResults.contractListingsCount != 0) ||
-                  this.state.listingsResults.contractListingsCount < 0) ?
+                display: ((this.state.contractListingsCount == -1) ?
+                'block' : 'none')
+              }}
+            >
+              <img src='ajax-loader.gif'/>
+              <p>Loading from blockchain</p>
+            </div>
+
+            <div
+              style={{
+                display: ((this.state.listingsResults.length == 0) &&
+                  (this.state.listingsResults.contractListingsCount > 0)) ?
                 'block' : 'none'
               }}
-            />
+            >
+              <img src='ajax-loader.gif'/>
+              <p>Loading from IPFS</p>
+            </div>
             {(this.state.contractListingsCount == 0) ? "No listings" : ""}
+
             {this.state.listingsResults.map(listing => (
               <div className="listing" key={listing.contract.ipfsHash}>
                 <hr/>

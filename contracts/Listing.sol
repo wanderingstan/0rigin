@@ -45,14 +45,14 @@ contract Listing {
   event UpdateListings(address from);
 
   // Create a new listing
-  function create(bytes32 ipfsHash, uint price, uint unitsAvailable) public returns (uint _length) {
+  function create(bytes32 ipfsHash, uint price, uint unitsAvailable) public returns (uint) {
     listings.push(listingStruct(msg.sender, ipfsHash, price, unitsAvailable));
     UpdateListings(msg.sender);
     return listings.length;
   }
 
   // Buy a listed unit
-  function buyListing(uint index, uint unitsToBuy) public payable returns (bool _success) {
+  function buyListing(uint index, uint unitsToBuy) public payable {
     // // Check validity
     // require (index < listings.length); // Must be valid index
     // require (unitsToBuy <= listings[index].unitsAvailable);  // Must be enough units to buy
@@ -67,7 +67,6 @@ contract Listing {
     lister.transfer(this.balance);
 
     // TODO: Raise some event?
-    return true;
   }
 
 }

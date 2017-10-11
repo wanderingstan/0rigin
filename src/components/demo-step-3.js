@@ -15,7 +15,7 @@ class DemoStep3 extends Component {
     })
     .catch((error) => {
       console.error(error)
-      if (error=='Error: invalid address') {
+      if (error === 'Error: invalid address') {
         alert(error + "\nAre you logged in to MetaMask?")
       } else {
         alert(error)
