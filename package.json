@@ -52,6 +52,7 @@
     "bs58": "^4.0.1",
     "dotenv": "^2.0.0",
     "ethereumjs-testrpc": "^4.0.1",
+    "ethereumjs-units": "^0.2.0",
     "fetch": "^1.1.0",
     "ipfs-api": "^14.1.1",
     "react": "^15.4.2",

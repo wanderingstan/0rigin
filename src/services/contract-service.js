@@ -1,6 +1,7 @@
 import ListingContract from '../../build/contracts/Listing.json'
 import web3Service from './web3-service'
 import bs58 from 'bs58'
+import Units from 'ethereumjs-units'
 
 class ContractService {
   static instance
@@ -63,7 +64,11 @@ class ContractService {
       this.listingContract.setProvider(web3Service.web3.currentProvider)
       web3Service.web3.eth.getAccounts((error, accounts) => {
         this.listingContract.deployed().then((instance) => {
-          return instance.create(this.getBytes32FromIpfsHash(ipfsListing), 3.14, 42.0, {from: accounts[0]})
+          // TODO: Get price and unitsAvailable from json
+          const price = 3.14
+          const priceWei = Units.convert(price.toString(), 'eth', 'wei')
+          const unitsAvailable = 42
+          return instance.create(this.getBytes32FromIpfsHash(ipfsListing), priceWei, unitsAvailable, {from: accounts[0]})
         }).then((result) => {
           resolve(result)
         }).catch((error) => {
