@@ -6,7 +6,7 @@ contract Listing {
   address public origin;
 
   // Defines origin admin address - may be removed for public deployment
-  function Listing() {
+  function Listing() public {
     origin = msg.sender;
   }
 
@@ -45,26 +45,29 @@ contract Listing {
   event UpdateListings(address from);
 
   // Create a new listing
-  function create(bytes32 ipfsHash, uint price, uint unitsAvailable) public returns (uint) {
+  function create(bytes32 ipfsHash, uint price, uint unitsAvailable) public returns (uint _length) {
     listings.push(listingStruct(msg.sender, ipfsHash, price, unitsAvailable));
     UpdateListings(msg.sender);
     return listings.length;
   }
 
   // Buy a listed unit
-  function buyListing(uint index, uint unitsToBuy) public {
-    // Check validity
-    require (index < listings.length); // Must be valid index
-    require (unitsToBuy <= listings[index].unitsAvailable);  // Must be enough units to buy
-    require (this.balance >= (listings[index].price * unitsToBuy));  // Must cover cost of purchase
+  function buyListing(uint index, uint unitsToBuy) public payable returns (bool _success) {
+    // // Check validity
+    // require (index < listings.length); // Must be valid index
+    // require (unitsToBuy <= listings[index].unitsAvailable);  // Must be enough units to buy
+    // require (this.balance >= (listings[index].price * unitsToBuy));  // Must cover cost of purchase
+
     // Count units as sold
-    listings[index].unitsAvailable = listings[index].unitsAvailable - unitsToBuy;
+    listings[index].unitsAvailable -= unitsToBuy;
 
     // Send funds to lister
     // TODO: In future there will likely be some sort of escrow
-    listings[index].lister.transfer(this.balance);
+    address lister = listings[index].lister;
+    lister.transfer(this.balance);
 
     // TODO: Raise some event?
+    return true;
   }
 
 }

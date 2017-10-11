@@ -17,13 +17,14 @@ class DemoBuy extends Component {
   }
 
   handleBuyClicked() {
-    contractService.buyListing(this.props.listing.contract.index, 1)
+    const unitsToBuy = 1;
+    contractService.buyListing(this.props.listing.contract.index, unitsToBuy, (unitsToBuy * this.props.listing.contract.price))
     .then((transactionReceipt) => {
-      console("Purchased!")
+      console.log("Purchased!")
       //onSubmitToBlockchain(transactionReceipt.tx)
     })
     .catch((error) => {
-      console.error(error)
+      console.log(error)
       alert(error)
     });
   }

@@ -63,7 +63,7 @@ class ContractService {
       this.listingContract.setProvider(web3Service.web3.currentProvider)
       web3Service.web3.eth.getAccounts((error, accounts) => {
         this.listingContract.deployed().then((instance) => {
-          return instance.create(this.getBytes32FromIpfsHash(ipfsListing), 1.0, 1.0, {from: accounts[0]})
+          return instance.create(this.getBytes32FromIpfsHash(ipfsListing), 3.14, 42.0, {from: accounts[0]})
         }).then((result) => {
           resolve(result)
         }).catch((error) => {
@@ -113,14 +113,14 @@ class ContractService {
     })
   }
 
-  buyListing(listingIndex, unitsToBuy) {
+  buyListing(listingIndex, unitsToBuy, amountToGive) {
     return new Promise((resolve, reject) => {
 
       this.listingContract.setProvider(web3Service.web3.currentProvider)
       web3Service.web3.eth.getAccounts((error, accounts) => {
         this.listingContract.deployed().then((instance) => {
           // Buy it
-          instance.buyListing(listingIndex, unitsToBuy, {from: accounts[0]}).then(() => {
+          instance.buyListing(listingIndex, unitsToBuy, {from: accounts[0], amount:amountToGive}).then(() => {
             console.log("Purchased!")
             resolve()
           })
