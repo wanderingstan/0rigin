@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 
 import contractService from '../services/contract-service'
 import ipfsService from '../services/ipfs-service'
+
 import bs58 from 'bs58'
 
 class DemoStep0 extends Component {
@@ -17,40 +18,41 @@ class DemoStep0 extends Component {
 
     let that = this
 
-    // Test getting listings from chain
-    setTimeout(function() {
-      // TODO: Remove hacky 2s delay and correctly determine when contractService
-      // is ready
-      contractService.getAllListings().then((allContractResults) => {
-        var resultIndex;
-        console.log("Got this many results:" + allContractResults.length)
-        console.log(allContractResults)
-        that.setState({contractListingsCount: allContractResults.length})
-        for (resultIndex in allContractResults) {
-          (function (contractResult) {
-            const hashStr = contractResult.ipfsHash
-            ipfsService.getListing(hashStr)
-            .then((listingJson) => {
-              const listingData = {
-                'contract': contractResult,
-                'ipfs': JSON.parse(listingJson).data
-              }
-              console.log(listingData)
-              // Append our new result to state. For now we don't care about ordering.
-              that.setState({
-                listingsResults: that.state.listingsResults.concat(listingData)
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        // TODO: Remove hacky 2s delay and correctly determine when contractService
+        // is ready. Problem is that web3-service.js waits for the page to load.
+        contractService.getAllListings().then((allContractResults) => {
+          var resultIndex;
+          console.log("Got this many results:" + allContractResults.length)
+          console.log(allContractResults)
+          that.setState({contractListingsCount: allContractResults.length})
+          for (resultIndex in allContractResults) {
+            (function (contractResult) {
+              const hashStr = contractResult.ipfsHash
+              ipfsService.getListing(hashStr)
+              .then((listingJson) => {
+                const listingData = {
+                  'contract': contractResult,
+                  'ipfs': JSON.parse(listingJson).data
+                }
+                console.log(listingData)
+                // Append our new result to state. For now we don't care about ordering.
+                that.setState({
+                  listingsResults: that.state.listingsResults.concat(listingData)
+                })
               })
-            })
-            .catch((error) => {
-              alert(error)
-            });
-          })(allContractResults[resultIndex])
-        }
+              .catch((error) => {
+                alert(error)
+              });
+            })(allContractResults[resultIndex])
+          }
 
-      }).catch((error) => {
-        alert('Error:  ' + error)
-      });
-    }, 3000);
+        }).catch((error) => {
+          alert('Error:  ' + error)
+        });
+      }, 5000);
+    })
   }
 
   render() {
