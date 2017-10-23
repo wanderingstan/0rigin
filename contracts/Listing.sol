@@ -69,6 +69,7 @@ contract Listing {
 
   // Defines origin admin address - may be removed for public deployment
   function Listing()
+    public
   {
     origin = msg.sender;
   }
@@ -114,7 +115,7 @@ contract Listing {
   {
     listings.push(listingStruct(msg.sender, _ipfsHash, _price, _unitsAvailable));
     UpdateListings(msg.sender);
-    NewListing(_index);
+    NewListing(listings.length-1);
     return listings.length;
   }
 
@@ -132,11 +133,11 @@ contract Listing {
     // Count units as sold
     listings[_index].unitsAvailable -= _unitsToBuy;
 
+    ListingPurchased(_index, _unitsToBuy, this.balance);
+
     // Send funds to lister
     // TODO: In future there will likely be some sort of escrow
     listings[_index].lister.transfer(this.balance);
-
-    ListingPurchased(_index, _unitsToBuy, this.balance);
   }
 
 }

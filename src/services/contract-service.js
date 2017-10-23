@@ -115,6 +115,47 @@ class ContractService {
     })
   }
 
+  buyListing(listingIndex, unitsToBuy, amountToGive) {
+    return new Promise((resolve, reject) => {
+
+      this.listingContract.setProvider(web3Service.web3.currentProvider)
+      web3Service.web3.eth.getAccounts((error, accounts) => {
+        this.listingContract.deployed().then((instance) => {
+
+          // Log Solidity events
+          // TODO (Stan): This should be handled at higher level to be available
+          // throughout app, once we fix web3 integration. OR, limited to just
+          // events of buying.
+
+          // var events = instance.allEvents();
+          // events.watch(function(error, event) {
+          //   if (error) {
+          //     console.log("Error: " + error);
+          //   } else {
+          //     console.log(event.event + ": " + JSON.stringify(event.args));
+          //   }
+          // })
+
+          // Buy it for real
+          instance.buyListing(
+            listingIndex,
+            unitsToBuy,
+            {from: accounts[0], amount:amountToGive}
+          ).then(() => {
+            alert("Purchase transaction sent.")
+            resolve()
+          })
+          .catch((error) => {
+            console.error(error)
+            reject(error)
+          })
+
+        }) // deployed
+      }) // getAccounts
+    }) // Promise
+  }
+
+
 }
 
 const contractService = new ContractService()

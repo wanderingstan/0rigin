@@ -58,7 +58,7 @@ class IpfsService {
 
       this.ipfs.files.cat(ipfsHashStr, function (err, stream) {
         if (err) {
-          console.error(err)
+          console.warn(err)
           reject("Got ipfs cat err:" + err)
         }
 
