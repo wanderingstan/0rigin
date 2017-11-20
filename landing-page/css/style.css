@@ -1,0 +1,159 @@
+/*************************************
+*************************************/
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+/* Page 1 */
+
+.page-1 {
+  width: 1440px;
+  height: 673px;
+  background-color: #6f8294;
+  overflow: visible;
+
+  z-index: 5;
+
+}
+
+.the-sharing-economy {
+  left: 250px;
+  top: 258px;
+  position: absolute;
+
+  width: 458.5px;
+  height: 112px;
+  font-family: Poppins;
+  font-size: 40px;
+  font-weight: 200;
+  text-align: left;
+  color: #ffffff;
+}
+
+._0-rigin-protocols-pow {
+  left: 279.5px;
+  top: 389px;
+  position: absolute;
+
+  width: 310.5px;
+  height: 48px;
+  font-family: Lato;
+  font-size: 20px;
+  font-weight: 300;
+  text-align: left;
+  color: #ffffff;
+}
+
+.hero-devices {
+  left: 836px;
+  top: 180px;
+  position: absolute;
+
+  width: 393px;
+  height: 556px;
+  object-fit: contain;
+}
+
+/* Page 2 */
+
+.line {
+  left: 0px;
+  top: 491.5px;
+  position: absolute;
+
+  width: 1440px;
+  height: 597.2px;
+  border-style: solid;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left, #1a82ff, #26d198);
+  border-image-source: linear-gradient(to left, var(--clear-blue), var(--greenblue));
+  border-image-slice: 1;
+}
+
+
+
+.white-diagonal-background {
+  width: 1440px;
+  height: 1519.4px;
+  object-fit: contain;
+  background-color: #ffffff;
+  box-shadow: 0 -5px 34px 0 rgba(0, 0, 0, 0.05);
+}
+
+.platform-graphic {
+  left: 260px;
+  top: 655px;
+  position: absolute;
+
+  width: 360px;
+  height: 528px;
+  object-fit: contain;
+}
+
+.the-0-rigin-platform {
+  left: 732px;
+  top: 869px;
+  position: absolute;
+
+  /*width: 259px;*/
+  height: 46px;
+  font-family: Poppins;
+  font-size: 28px;
+  font-weight: 300;
+  text-align: left;
+  color: #111d28;
+  color: var(--dark);
+}
+
+.we-empower-developer {
+  left: 732px;
+  top: 927px;
+  position: absolute;
+
+  width: 405px;
+  height: 112px;
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.39;
+  text-align: left;
+  color: #111d28;
+  color: var(--dark);
+}
+
+.rectangle-3 {
+  left: 730px;
+  top: 1079px;
+  position: absolute;
+
+  width: 256px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: #1a82ff;
+
+  font-family: Lato;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
+  color: #ffffff;
+}
+
+.partners-building-on {
+  left: 250;
+  top: 1327;
+  position: absolute;
+
+  width: 514px;
+  height: 46px;
+  font-family: Poppins;
+  font-size: 28px;
+  font-weight: 300;
+  text-align: left;
+  color: #000000;
+}
+
+
