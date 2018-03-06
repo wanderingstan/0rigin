@@ -1,3 +1,5 @@
+<img width="880" alt="banner-example" src="https://user-images.githubusercontent.com/673455/37048674-cfa72e6a-212b-11e8-9bbe-62f3885e5bae.png">
+
 # Origin
 The sharing economy without intermediaries.
 
