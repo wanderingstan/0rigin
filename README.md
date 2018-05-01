@@ -1,7 +1,4 @@
-<img width="880" alt="banner-example" src="https://user-images.githubusercontent.com/673455/37048674-cfa72e6a-212b-11e8-9bbe-62f3885e5bae.png">
-
-![1](https://user-images.githubusercontent.com/673455/37050721-d888ef0e-2131-11e8-9589-6cbb59f4aba4.gif)
-
+Test: [Heroku Fork](http://localhost:5000/)
 
 # Origin
 The sharing economy without intermediaries.
